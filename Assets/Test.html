@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="./js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+
+    <script src="./js/lib/vue.js"></script>
+    <script src="./js/lib/vue-resource.min.js"></script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="./js/lib/jquery-2.0.0.min.js"></script>
+    <script src="./js/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div id="soui">
+    <div is="index">
+    </div>
+
+    {{msg}}
+    <input v-model="msg" lazy>
+    <button v-on:click="greet">Greet</button>
+    <button onclick="aaa()">原生方法</button>
+    <button onclick="bbb()">vue方法</button>
+    </div>
+    <script type="text/javascript">
+    var data = {
+        Aaa:{
+            "a1":"123"
+        },
+        "Filter":{
+            "$and":{
+            "ep.o.well":{"$eq":"塔中101"},
+            "ep:pt":{"$eq":"综合录井报告"}
+            }
+        },
+        "Pager":{
+            "From":0,
+            "Size":10
+        }
+    };
+    Vue.http.post("http://localhost:1668/API/SearchService/Search",data);
+
+    // $.ajax({
+    //         url: "http://localhost:1668/API/SearchService/Search",
+    //         type: "post",
+    //         data: data,
+    //         //cache:false,
+    //         dataType: "json",
+    //         //async: false,
+    //         success: function (data) {
+    //            debugger;
+    //         },
+    //         error: function(err) {
+    //             debugger;
+    //         }
+    //     });
+
+        var vm = new Vue({
+            el: 'body',
+            data: {
+                msg: 1,
+                name: 'Vue.js'
+            },
+            // 在 `methods` 对象中定义方法
+            methods: {
+                greet: function(event) {
+                    debugger;
+                    // 方法内 `this` 指向 vm
+                    alert('Hello ' + this.name + '!')
+                        // `event` 是原生 DOM 事件
+                    alert(event.target.tagName)
+                }
+            }
+        })
+
+        function bbb() {
+            vm.greet()
+        }
+
+        function aaa() {
+            alert("原生事件");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>图片显示</title>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="../js/lib/jquery-2.0.0.min.js"></script>
+    <script src="../js/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="../js/soUIDev.js"></script>
+    <script src="../Js/lib/zoom-jquery.js"></script>
+</head>
+
+<body >
+<!--<div id="imgviewer" class="col-md-6">-->
+    <so:image
+            :id="imgdiv"
+            url="../Img/haha.jpg"
+            :showTool="showtool"
+            :onclick="ImgClick"
+            :hidden="hidden"
+            :style="style"
+            class="imgclass"></so:image>
+<!--</div>-->
+<script type="text/javascript">
+    function  ImgClick(value) {
+        debugger
+        alert(JSON.stringify(value));
+    }
+    //var id="imgdiv";
+    var  showtool=true;
+    var hidden=false;
+    var style="border: 1px solid #759; width: 800px;height: 600px;";
+//    var vm = soUIDev.bind({
+//        scope:"imgviewer",
+//        model:"so:image"
+//    });
+
+</script>
+</body>
+</html>

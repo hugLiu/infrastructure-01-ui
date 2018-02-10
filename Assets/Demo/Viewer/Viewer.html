@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>图片展示</title>
+    <link rel="stylesheet" href="../../Js/lib/bootstrap-3.3.5-dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../../Js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Js/lib/Viewer/viewer.min.css">
+    <script src="../../Js/lib/jquery-3.1.1.min.js"></script>
+    <script src="../../Js/soUIDev.js"></script>
+    <script src="../../Js/lib/Viewer/viewer.min.js"></script>
+</head>
+<body>
+<div id="sooil">
+    <so:img 
+    :imgurl="imgUrls" :height="300px" :width="300px">
+    </so:img>
+</div>
+
+<script type="text/javascript">
+   var imgUrls="../../Img/2.jpg";
+soUIDev.bind({
+    scope:"sooil",
+    model:"so:img",    
+});
+</script>
+</body>
+
+</html>

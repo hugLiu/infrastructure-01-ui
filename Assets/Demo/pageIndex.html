@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>表格</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="../js/lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../js/lib/bootstrap-3.3.5-dist/css/font-awesome.min.css">
+    <script src="../js/lib/vue.js"></script>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="../js/lib/jquery-2.0.0.min.js"></script>
+    <script src="../js/lib/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="../js/page.js"></script>
+
+    <style>
+        /* .gridClass {
+            background-color: cornflowerblue
+        } */
+    </style>
+</head>
+
+<body>
+    <h3>分页组件</h3>
+
+    <br>
+
+    <so:pager :id="pager" :pagesize="_pageSize" :count="_count" :items="5" :onselectitem="selectPage" ref="page"></so:pager>
+
+
+
+    <script>
+        var _pageSize = 3,
+            _count = 10;
+
+
+        var selectPage = function(event) {
+
+        }
+
+        function event8() {
+            $.ajax({
+                url: url8,
+                type: "get",
+                dataType: "json",
+                success: function(json) {
+                    datagrid.setDataById("grid8", "data8", json)
+                }
+            })
+        }
+        event8()
+
+        function event7() {
+            $.ajax({
+                url: url7,
+                type: "get",
+                dataType: "json",
+                success: function(json) {
+                    datagrid.setDataById("grid7", "data7", json)
+                }
+            })
+        }
+        event7()
+
+        function changeData_6() {
+            $.ajax({
+                url: url6_1,
+                type: "get",
+                dataType: "json",
+                success: function(json) {
+                    datagrid.setDataById("grid6", "data6", json)
+                }
+            })
+        }
+
+
+        function event6() {
+            $.ajax({
+                url: url6,
+                type: "get",
+                dataType: "json",
+                success: function(json) {
+                    datagrid.setDataById("grid6", "data6", json)
+                }
+            })
+        }
+        event6()
+
+        function event4() {
+            $.ajax({
+                url: url4,
+                type: "get",
+                dataType: "json",
+                success: function(json) {
+                    datagrid.setDataById("grid4", "data4", json)
+                }
+            })
+        }
+        event4()
+
+        function event3() {
+            $.ajax({
+                url: url3,
+                type: "get",
+                dataType: "json",
+                success: function(json) {
+                    datagrid.setDataById("grid3", "data3", json)
+                }
+            })
+        }
+        event3()
+
+        function event2() {
+            $.ajax({
+                url: url2,
+                type: "get",
+                dataType: "json",
+                success: function(json) {
+                    datagrid.setDataById("grid2", "data2", json)
+                }
+            })
+        }
+        event2()
+
+        function event_6() {
+            $.ajax({
+                url: url6,
+                type: "get",
+                dataType: "json",
+                async: false,
+                success: function(json) {
+                    data_6 = json
+                }
+            })
+        }
+        event_6()
+
+        $.ajaxSettings.async = false;
+        $.getJSON(url1, function(json) {
+            data1 = json;
+        })
+        $.ajaxSettings.async = false;
+        $.getJSON(url4_1, function(json) {
+            data4_1 = json;
+        })
+
+        //event 
+        var hide1 = function() {
+            datagrid.setDataById("grid1", "hidden1", true)
+        }
+
+
+        var sort4 = function(event) {
+            // var d = {}
+            // d.fields = event.detail.fields
+            // d.selectedKeys = event.detail.selectedKeys
+            // var records = data4_1.records
+            // records = listSortBy(records, event.detail.sortField, event.detail.ascendingOrder);
+            // d.records = records
+            // return d
+
+            $.ajax({
+                url: url4_1,
+                type: "get",
+                dataType: "json",
+                success: function(json) {
+                    datagrid.setDataById("grid4", "data4", json)
+                }
+            })
+        }
+
+        var sort7 = function(event) {
+            var sortField = event.detail.sortField
+            var ascendingOrder = event.detail.ascendingOrder
+            var d = {},
+                data7_1
+            $.ajax({
+                url: url7,
+                type: "get",
+                dataType: "json",
+                async: false,
+                success: function(json) {
+                    data7_1 = json
+                }
+            })
+            d.fields = data7_1.fields
+            d.selectedKeys = data7_1.selectedKeys
+            var records = data7_1.records
+            records = listSortBy(records, sortField, ascendingOrder);
+            d.records = records
+            return records
+        }
+
+        var selectpage7 = function(event) {
+            var pageIndex = event.detail.pager.pageIndex
+            var pageSize = event.detail.pager.pageSize
+            var sortField = event.detail.sortField
+            var ascendingOrder = event.detail.ascendingOrder
+            var d = {},
+                data7_1
+
+            $.ajax({
+                url: url7,
+                type: "get",
+                dataType: "json",
+                async: false,
+                success: function(json) {
+                    data7_1 = json
+                }
+            })
+            d.fields = data7_1.fields
+            d.selectedKeys = data7_1.selectedKeys
+            var records = data7_1.records
+            if (ascendingOrder != null)
+                records = listSortBy(records, sortField, ascendingOrder);
+            var start = pageSize * (pageIndex - 1);
+            var end = pageSize * pageIndex;
+            records = records.slice(start, end);
+            d.records = records
+            return records
+        }
+
+        var sort9 = function(event) {
+            var sortField = event.detail.sortField
+            var ascendingOrder = event.detail.ascendingOrder
+            var d = {}
+                //d.fields = data9_1.fields
+            d.selectedKeys = event.detail.selectedKeys
+                // var records = data9_1.records
+            var ascData = [{
+                    "id": 1,
+                    "name": "wanglydasda ",
+                    "math": 18,
+                    "chinese": 80,
+                    "english": 91
+                }, {
+                    "id": 2,
+                    "name": "lixx",
+                    "math": 28,
+                    "chinese": 80,
+                    "english": 90
+                }, {
+                    "id": 3,
+                    "name": "xiaob",
+                    "math": 38,
+                    "chinese": 80,
+                    "english": 89
+                }, {
+                    "id": 4,
+                    "name": "liucz",
+                    "math": 48,
+                    "chinese": 80,
+                    "english": 88
+                }],
+                descData = [{
+                    "id": 9,
+                    "name": "yiwk",
+                    "math": 98,
+                    "chinese": 80,
+                    "english": 83
+                }, {
+                    "id": 8,
+                    "name": "lid",
+                    "math": 88,
+                    "chinese": 80,
+                    "english": 84
+                }, {
+                    "id": 7,
+                    "name": "liyz",
+                    "math": 78,
+                    "chinese": 80,
+                    "english": 85
+                }, {
+                    "id": 6,
+                    "name": "kuq",
+                    "math": 68,
+                    "chinese": 80,
+                    "english": 86
+                }]
+            var records = ascendingOrder ? ascData : descData
+            d.records = records
+            return records
+        }
+
+        var selectRow9 = function(event) {
+            console.log(event.detail)
+        }
+
+        var selectpage9 = function(event) {
+            var pageIndex = event.detail.pager.pageIndex
+            var pageSize = event.detail.pager.pageSize
+            var sortField = event.detail.sortField
+            var ascendingOrder = event.detail.ascendingOrder
+            var data9_1;
+            $.ajax({
+                url: url9,
+                type: "get",
+                dataType: "json",
+                async: false,
+                success: function(json) {
+                    data9_1 = json
+                }
+            })
+
+            var d = {}
+            d.fields = data9_1.fields
+            var records = data9_1.records
+            if (ascendingOrder != null)
+                records = listSortBy(records, sortField, ascendingOrder);
+            var start = pageSize * (pageIndex - 1);
+            var end = pageSize * pageIndex;
+            records = records.slice(start, end);
+            d.records = records
+            d.selectedKeys = event.detail.selectedKeys
+            return records
+        }
+
+        var getSelectsId6 = function() {
+            var selection = $("#grid_6")[0].getAttribute("selection")
+            alert("用例6选中的节点id：" + selection)
+        }
+
+        var getSelectsId8 = function() {
+            var selection = $("#grid8")[0].getAttribute("selection")
+            alert("用例8选中的节点id：" + selection)
+        }
+
+        var getSelectsId9 = function() {
+            var selection = $("#grid9")[0].getAttribute("selection")
+            alert("用例9选中的节点id：" + selection)
+        }
+
+        var partParameters = function(a, b) {
+            alert("点击的参数依次是：" + a + "," + b);
+        }
+
+        var allParameters = function(a, b, c, d, e) {
+            alert("点击的参数依次是：" + a + "," + b + "," + c + "," + d + "," + e);
+        }
+
+        function listSortBy(arr, field, order) {
+            var refer = [],
+                result = [],
+                index;
+            for (i = 0; i < arr.length; i++) {
+                refer[i] = (isNaN(arr[i][field]) ? arr[i][field] : pad(arr[i][field], 20)) + ':' + i;
+            }
+            refer.sort();
+            if (!order) refer.reverse();
+            for (i = 0; i < refer.length; i++) {
+                index = refer[i].split(':')[1];
+                result[i] = arr[index];
+            }
+            return result;
+        }
+
+        function pad(num, n) {
+            var len = num.toString().length;
+            while (len < n) {
+                num = "0" + num;
+                len++;
+            }
+            return num;
+        }
+    </script>
+</body>
+
+</html>
